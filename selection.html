@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robot selection</title>
+    <link rel="stylesheet" href="selectionstyle.css">
+</head>
+<body style="background-color: black">
+    <h1>choose your personal robot assistant</h1>
+
+    <div class = gallery>
+        <div class = item data-name = "Maloi" style="background-color: yellow;"></div>
+        <div class = item data-name = "Gwen" style="background-color: orange;"></div>
+        <div class = item data-name = "Mikha" style="background-color: red;"></div>
+        <div class = item data-name = "Colet" style="background-color: greenyellow;"></div>
+        <div class = item data-name = "Aiah" style="background-color: skyblue;"></div>
+        <div class = item data-name = "Sheena" style="background-color: purple;"></div>
+        <div class = item data-name = "Stacey" style="background-color: pink;"></div>
+        <div class = item data-name = "Jhoanna" style="background-color: blue;"></div>
+    </div>
+    </div>
+
+    <br>
+    <p id="chooseMessage" style="color: aliceblue;">Can't choose?</p>
+    <button type="button" id="randomizeButton" onclick="displayRandomItem()">Randomize</button>
+    <p class="message" id="matchMessage">Your character is: <span id="itemName"></span></p>
+
+    <!-- Confirmation Dialog -->
+    <div id="confirmationDialog" style="display:none; color:white;">
+        <p style="margin: 20px 0;">Would you like to confirm your selection?</p>
+        <button id="confirmYes" onclick="confirmSelection(true)">Yes</button>
+        <button id="confirmNo" onclick="confirmSelection(false)">No</button>
+    </div>
+
+    <script>
+        // Function to display a random item when the button is clicked
+        function displayRandomItem() {
+            let items = document.querySelectorAll(".item");
+            let message = document.getElementById("matchMessage");
+            let itemName = document.getElementById("itemName");
+
+            // Hide all items before displaying the selected one
+            items.forEach(item => {
+                item.style.display = "none";
+                item.style.border = "none"; // Remove border from all items
+                item.classList.remove("neon-glow"); // Remove neon glow
+                item.classList.remove("neon-text"); // Remove neon text glow
+            });
+
+            // Get a random index and select the item
+            let randomIndex = Math.floor(Math.random() * items.length);
+            let selectedItem = items[randomIndex];
+            selectedItem.style.display = "flex";
+            
+            // Get the background color of the selected item
+            let itemColor = window.getComputedStyle(selectedItem).backgroundColor;
+
+            // Add the border color corresponding to the background color
+            selectedItem.style.border = `2px solid ${itemColor}`; // Border color matches item color
+            selectedItem.classList.add("neon-glow");  // Apply neon glow to the selected item
+            selectedItem.classList.add("neon-text");  // Apply neon text glow
+
+            // Apply the neon glow dynamically based on the background color
+            selectedItem.style.boxShadow = `0 0 10px 5px ${itemColor}`; // Apply item color glow to box-shadow
+            itemName.style.textShadow = `0 0 5px ${itemColor}, 0 0 10px ${itemColor}, 0 0 15px ${itemColor}`; // Apply item color glow to text-shadow
+
+            // Get the name of the selected item
+            let name = selectedItem.getAttribute("data-name");
+
+            // Display the name in the message
+            itemName.textContent = name;
+
+            // Set the message color based on the item's background color
+            message.style.display = "block";
+            message.style.color = itemColor;
+
+            // Show the confirmation dialog
+            showConfirmationDialog(selectedItem);
+        }
+
+        // Display the item when clicked
+        document.querySelectorAll(".item").forEach(item => {
+            item.addEventListener("click", function() {
+                let message = document.getElementById("matchMessage");
+                let itemName = document.getElementById("itemName");
+
+                // Hide all items and reset borders
+                document.querySelectorAll(".item").forEach(i => {
+                    i.style.display = "none";
+                    i.style.border = "none"; // Remove border from all items
+                    i.classList.remove("neon-glow"); // Remove neon glow
+                    i.classList.remove("neon-text"); // Remove neon text glow
+                });
+
+                // Display the clicked item
+                item.style.display = "flex";
+                
+                // Get the background color of the clicked item
+                let itemColor = window.getComputedStyle(item).backgroundColor;
+
+                // Add the border color corresponding to the background color
+                item.style.border = `2px solid ${itemColor}`; // Border color matches item color
+                item.classList.add("neon-glow");  // Apply neon glow to the clicked item
+                item.classList.add("neon-text");  // Apply neon text glow
+
+                // Apply the neon glow dynamically based on the background color
+                item.style.boxShadow = `0 0 10px 5px ${itemColor}`; // Apply item color glow to box-shadow
+                itemName.style.textShadow = `0 0 5px ${itemColor}, 0 0 10px ${itemColor}, 0 0 15px ${itemColor}`; // Apply item color glow to text-shadow
+
+                // Get the name of the clicked item
+                let name = item.getAttribute("data-name");
+
+                // Display the name in the message
+                itemName.textContent = name;
+
+                // Set the message color based on the item's background color
+                message.style.display = "block";
+                message.style.color = itemColor;
+
+                // Show the confirmation dialog
+                showConfirmationDialog(item);
+            });
+        });
+
+        // Show the confirmation dialog
+        function showConfirmationDialog(selectedItem) {
+            let dialog = document.getElementById("confirmationDialog");
+            dialog.style.display = "block";
+
+            // Store the selected item in a global variable for confirmation
+            window.selectedItemForConfirmation = selectedItem;
+        }
+
+        // Handle confirmation selection (Yes or No)
+        function confirmSelection(confirm) {
+            let dialog = document.getElementById("confirmationDialog");
+            let chooseMessage = document.getElementById("chooseMessage"); // The "Can't choose?" message
+            let matchMessage = document.getElementById("matchMessage"); // The "Your character is" message
+            if (confirm) {
+                let selectedItem = window.selectedItemForConfirmation;
+                let itemName = document.getElementById("itemName");
+
+                // Hide the confirmation dialog
+                dialog.style.display = "none";
+
+                // Hide the randomize button after confirmation
+                let randomizeButton = document.getElementById("randomizeButton");
+                randomizeButton.style.display = "none";  // Hide the randomize button
+
+                // Change the "Can't choose?" text to "Good choice!"
+                chooseMessage.textContent = "Good choice!";
+
+                // Change "Your character is" to "Your choice is"
+                matchMessage.textContent = "Your choice is: " + selectedItem.getAttribute("data-name");
+            } else {
+                // If "No", randomize again
+                dialog.style.display = "none";  // Hide confirmation dialog
+                displayRandomItem();           // Trigger a new random selection
+            }
+        }
+
+        function confirmSelection(confirm) {
+    let dialog = document.getElementById("confirmationDialog");
+    if (confirm) {
+        let selectedItem = window.selectedItemForConfirmation;
+        let itemName = selectedItem.getAttribute("data-name");
+
+        // Redirect to another page with the selected item
+        window.location.href = `confirmselection.html?name=${encodeURIComponent(itemName)}`;
+    } else {
+        dialog.style.display = "none";  // Hide confirmation dialog
+        displayRandomItem();           // Trigger a new random selection
+    }
+}
+    </script>
+</body>
+</html>

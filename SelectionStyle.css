@@ -1,0 +1,146 @@
+h1 {text-align: center;
+color: aliceblue;}
+button {  display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;}
+    button {
+        background-color: #ffffff;
+        border: 1px solid rgb(209, 213, 219);
+        border-radius: 0.5rem;
+        color: #111827;
+        font-size: 0.875rem;
+        font-weight: 600;
+        line-height: 1.25rem;
+        padding: 0.75rem 1rem;
+        text-align: center;
+        -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        cursor: pointer;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        -webkit-user-select: none;
+        -ms-touch-action: manipulation;
+        touch-action: manipulation;
+      }
+      
+      button:hover {
+        background-color: #f9fafb;
+      }
+      
+      button:focus {
+        outline: 2px solid rgba(0, 0, 0, 0.1);
+        outline-offset: 2px;
+      }
+      
+      button:focus-visible {
+        -webkit-box-shadow: none;
+        box-shadow: none;
+      }
+      
+p{text-align: center;}
+
+.neon-glow {
+    box-shadow: 0 0 10px 5px; /* Initially empty, will be set dynamically */
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+/* Neon glow effect for name text */
+.neon-text {
+    text-shadow: 0 0 5px, 0 0 10px, 0 0 15px; /* Initially empty, will be set dynamically */
+    transition: text-shadow 0.3s ease-in-out;
+}
+
+.container {
+    font-size: 5em;
+    background-color: #a8a8a8;
+    color: white;
+    width: 8em;
+    height: 2em;
+    line-height: 2;
+    text-align: center;
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .link {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+
+.gallery {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+}
+.gallery {
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    height: 500px;
+}
+
+.item {
+    flex: 1;
+    height: 100%;
+}
+
+.item:nth-child(1){
+    background-image: url(https://i.pinimg.com/736x/eb/4b/3a/eb4b3afde16f88b36635254add479865.jpg);
+    background-color: yellow;
+}
+.item:nth-child(2){
+    background-image: url(https://i.pinimg.com/736x/1c/a0/bc/1ca0bca6ad0ab188db5ec0cf0ee9c6cf.jpg);
+    background-color: orange;
+}
+.item:nth-child(3){
+    background-image: url(https://i.pinimg.com/736x/67/49/79/674979e1ac2aa81eba683c526fd0d9e6.jpg);
+    background-color: red;
+}
+.item:nth-child(4){
+    background-image: url(https://i.pinimg.com/736x/45/5d/d1/455dd16e7f8af4dacaea525842df48ee.jpg);
+    background-color: greenyellow;
+}
+.item:nth-child(5){
+    background-image: url(https://i.pinimg.com/736x/ce/7c/ed/ce7ceddd27eb615d4b64e23e04d5a5df.jpg);
+    background-color: skyblue;
+}
+.item:nth-child(6){
+    background-image: url(https://i.pinimg.com/736x/28/b0/42/28b042c666e2c18f651d0dd63dc49c3d.jpg);
+    background-color: purple;
+}
+.item:nth-child(7){
+    background-image: url(https://i.pinimg.com/736x/9f/e0/e1/9fe0e1d34007b9a18385f1bb0f4ca0a7.jpg);
+    background-color: pink;
+}
+.item:nth-child(8){
+    background-image: url(https://i.pinimg.com/736x/61/1e/2b/611e2b56ea9b8c2b854625b9f8d60a85.jpg);
+    background-color: blue;
+}
+
+.item{
+    background-position: center;
+    background-size: cover;
+    transition: flex 0.8s ease;
+}
+
+.item:hover{
+    flex: 5;
+}
+
+.message {
+    font-size: 20px;
+    font-weight: bold;
+    color: green;
+    margin-top: 10px;
+    display: none; /* Initially hidden */
+}
+
